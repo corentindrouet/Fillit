@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 15:33:48 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/04 16:02:36 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/05 10:15:24 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,26 @@ t_tetri	*creat_elem(char c, int rot)
 int		add_elem(t_tetri **lst, t_tetri *new)
 {
 	t_tetri	*ptr;
+	int		i;
 
+	i = 0;
 	ptr = *lst;
 	if (new == NULL)
 		return (0);
 	if (ptr == NULL)
+	{
+		new->alpha = 'A' + i;
 		*lst = new;
+	}
 	else
 	{
+		i = 1;
 		while (ptr->next)
+		{
+			i++;
 			ptr = ptr->next;
+		}
+		new->alpha = 'A' + i;
 		ptr->next = new;
 	}
 	return (1);
@@ -47,6 +57,8 @@ void	putlst(t_tetri *lst)
 	while (lst)
 	{
 		ft_putchar(lst->c);
+		ft_putchar(' ');
+		ft_putchar(lst->alpha);
 		ft_putchar(' ');
 		ft_putnbr(lst->rot);
 		ft_putchar('\n');

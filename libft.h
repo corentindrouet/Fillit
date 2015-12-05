@@ -6,7 +6,7 @@
 /*   By: cdrouet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 12:00:06 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/03 10:19:03 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/05 12:05:38 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+void				ft_inittab(char **tab, size_t line, size_t col, char c);
+void				ft_tabfree(char ***ptr, size_t taille);
+char				**ft_tabnew(size_t line, size_t col);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 void				ft_lstadd(t_list **alst, t_list *new);
