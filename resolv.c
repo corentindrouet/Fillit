@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 09:25:00 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/05 15:36:52 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/05 15:55:25 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	**resolv(t_tetri *lst)
 			return (NULL);
 		ft_inittab(ca, i, i, '.');
 		continu = resolv_recur(lst, ca, f, i);
-		ft_putstr("o");
 		if (!continu)
 			ft_tabfree(&ca, i);
 		i++;
@@ -41,7 +40,6 @@ int		resolv_recur(t_tetri *lst, char **ca,
 	int		j[3];
 	char	ptr[10] = "iotljzs";
 
-	ft_putstr("0");
 	if (lst == NULL)
 		return (1);
 	j[0] = -1;
