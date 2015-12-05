@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 13:09:52 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/05 15:20:44 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/05 16:37:30 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct		s_tetri
 	struct s_tetri	*next;
 }					t_tetri;
 
+int					verif_full(char **ca, int i);
+void				init_place(char c, int i, char **ca);
 int					resolv_recur(t_tetri *lst, char **ca,
 						int (*f[2])(t_tetri *lst, char **carre, int i, int j),
 							int i);
