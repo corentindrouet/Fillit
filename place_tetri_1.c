@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 10:23:21 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/07 08:38:36 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/07 13:43:07 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		i_place(t_tetri *lst, char **carre, int *i, int j)
 					carre[i[0] + l][i[1]] = lst->alpha;
 				return (1);
 			}
+	l = -1;
 	if (lst->rot == 1)
 		if ((j - (i[1] + 3)) > 0)
 			if (carre[i[0]][i[1]] == '.' && carre[i[0]][i[1] + 1] == '.'

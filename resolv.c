@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 09:25:00 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/07 11:18:20 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/07 13:25:17 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ char	**resolv(t_tetri *lst)
 	continu = 0;
 	while (continu <= 0 && i <= 11)
 	{
-		if ((ca = ft_tabnew(i, i)) == NULL)
+		if ((ca = ft_tabnew(i, i + 1)) == NULL)
 			return (NULL);
+		ft_inittab(ca, i, i + 1, '\0');
 		ft_inittab(ca, i, i, '.');
 		continu = resolv_recur(lst, ca, f, i);
 		if (continu <= 0)

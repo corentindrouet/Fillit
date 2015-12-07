@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 09:43:55 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/07 11:27:09 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/07 13:24:00 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 int		l_place(t_tetri *lst, char **carre, int *i, int j)
 {
-	if (lst->rot <= 1)
+	if (lst->rot >= 0 && lst->rot <= 1)
 		return (l_place_1(lst, carre, i, j));
-	else
+	else if (lst->rot >= 2 && lst->rot <= 3)
 		return (l_place_2(lst, carre, i, j));
+	return (0);
 }
 
 int		l_place_1(t_tetri *lst, char **carre, int *i, int j)
