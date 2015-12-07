@@ -6,11 +6,22 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 09:25:00 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/05 16:45:51 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/07 11:18:20 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+void	f_init(int (**f)(t_tetri*, char**, int*, int))
+{
+	f[0] = &i_place;
+	f[1] = &o_place;
+	f[2] = &t_place;
+	f[3] = &l_place;
+	f[4] = &j_place;
+	f[5] = &z_place;
+	f[6] = &s_place;
+}
 
 char	**resolv(t_tetri *lst)
 {
@@ -18,11 +29,12 @@ char	**resolv(t_tetri *lst)
 	int		i;
 	int		j;
 	int		continu;
+	int		(*f[7])(t_tetri*, char **, int*, int);
 
-	FP();
-	i = 4;
+	f_init(f);
+	i = 2;
 	continu = 0;
-	while (continu <= 0)
+	while (continu <= 0 && i <= 11)
 	{
 		if ((ca = ft_tabnew(i, i)) == NULL)
 			return (NULL);
@@ -40,12 +52,13 @@ char	**resolv(t_tetri *lst)
 	return (ca);
 }
 
-int		resolv_recur(t_tetri *lst, char **ca, 
-		int (*f[2])(t_tetri *lst, char **carre, int i, int j), int i)
+int		resolv_recur(t_tetri *lst, char **ca,
+		int (*f[2])(t_tetri *lst, char **carre, int *i, int j), int i)
 {
-	int		j[3];
-	char	ptr[10] = "iotljzs";
+	int		j[4];
+	char	*ptr;
 
+	ptr = "iotljzs";
 	if (lst == NULL)
 		return (1);
 	if (!verif_full(ca, i))
@@ -55,29 +68,21 @@ int		resolv_recur(t_tetri *lst, char **ca,
 	{
 		j[1] = -1;
 		while (++j[1] < i)
-		{
 			if (ca[j[0]][j[1]] == '.')
 			{
 				j[2] = -1;
 				while (++j[2] < 7)
-				{
 					if (lst->c == ptr[j[2]])
-					{
-						if (f[j[2]](lst, ca, j[0], j[1]))
+						if (f[j[2]](lst, ca, j, i))
 						{
-							if ((j[2] = resolv_recur(lst->next, ca, f, i)) > 0)
-							{
+							if ((j[3] = resolv_recur(lst->next, ca, f, i)) > 0)
 								return (1);
-							}
-							else if (j[2] == 0)
+							else if (j[3] == 0)
 								init_place(lst->alpha, i, ca);
 							else
 								return (-1);
 						}
-					}
-				}
 			}
-		}
 	}
 	return (0);
 }

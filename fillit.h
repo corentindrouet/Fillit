@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 13:09:52 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/05 16:37:30 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/07 10:08:49 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@
 # define Z()	&z_search
 # define S()	&s_search
 # define F() int	(*f[7])(char*) = {I(), O(), T(), L(), J(), Z(), S()};
-# define IP()	&i_place
-# define OP()	&o_place
-# define FP() int	(*f[2])(t_tetri*, char **, int, int) = {IP(), OP()};
 
 typedef struct		s_tetri
 {
@@ -39,10 +36,19 @@ typedef struct		s_tetri
 int					verif_full(char **ca, int i);
 void				init_place(char c, int i, char **ca);
 int					resolv_recur(t_tetri *lst, char **ca,
-						int (*f[2])(t_tetri *lst, char **carre, int i, int j),
+						int (*f[2])(t_tetri *lst, char **carre, int *i, int j),
 							int i);
-int					o_place(t_tetri *lst, char **carre, int i, int j);
-int					i_place(t_tetri *lst, char **carre, int i, int j);
+int					j_place(t_tetri *lst, char **carre, int *i, int j);
+int					o_place(t_tetri *lst, char **carre, int *i, int j);
+int					i_place(t_tetri *lst, char **carre, int *i, int j);
+int					z_place(t_tetri *lst, char **carre, int *i, int j);
+int					s_place(t_tetri *lst, char **carre, int *i, int j);
+int					t_place(t_tetri *lst, char **carre, int *i, int j);
+int					t_place_1(t_tetri *lst, char **carre, int *i, int j);
+int					t_place_2(t_tetri *lst, char **carre, int *i, int j);
+int					l_place(t_tetri *lst, char **carre, int *i, int j);
+int					l_place_1(t_tetri *lst, char **carre, int *i, int j);
+int					l_place_2(t_tetri *lst, char **carre, int *i, int j);
 char				**resolv(t_tetri *lst);
 size_t				lstlen(t_tetri *lst);
 t_tetri				*creat_elem(char c, int rot);

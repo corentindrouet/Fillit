@@ -6,50 +6,51 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 10:23:21 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/05 16:39:09 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/07 08:38:36 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		i_place(t_tetri *lst, char **carre, int i, int j)
+int		i_place(t_tetri *lst, char **carre, int *i, int j)
 {
 	int	l;
 
 	l = -1;
-	if (((int)ft_strlen(carre[0]) - (i + 3)) >= 0)
-		if (lst->rot == 0)
-			if (carre[i][j] == '.' && carre[i + 1][j] == '.'
-				&& carre[i + 2][j] == '.' && carre[i + 3][j] == '.')
+	if (j < 4)
+		return (0);
+	if (lst->rot == 0)
+		if ((j - (i[0] + 3)) > 0)
+			if (carre[i[0]][i[1]] == '.' && carre[i[0] + 1][i[1]] == '.'
+				&& carre[i[0] + 2][i[1]] == '.' && carre[i[0] + 3][i[1]] == '.')
 			{
 				while (++l < 4)
-					carre[i + l][j] = lst->alpha;
+					carre[i[0] + l][i[1]] = lst->alpha;
 				return (1);
 			}
-	if (((int)ft_strlen(carre[0]) - (j + 3)) >= 0)
-		if (lst->rot == 1)
-			if (carre[i][j] == '.' && carre[i][j + 1] == '.'
-				&& carre[i][j + 2] == '.' && carre[i][j + 3] == '.')
+	if (lst->rot == 1)
+		if ((j - (i[1] + 3)) > 0)
+			if (carre[i[0]][i[1]] == '.' && carre[i[0]][i[1] + 1] == '.'
+				&& carre[i[0]][i[1] + 2] == '.' && carre[i[0]][i[1] + 3] == '.')
 			{
 				while (++l < 4)
-					carre[i][j + l] = lst->alpha;
+					carre[i[0]][i[1] + l] = lst->alpha;
 				return (1);
 			}
 	return (0);
 }
 
-int		o_place(t_tetri *lst, char **carre, int i, int j)
+int		o_place(t_tetri *lst, char **carre, int *i, int j)
 {
-	if (((int)ft_strlen(carre[0]) - (i + 1) >= 0)
-		&& (int)ft_strlen(carre[0]) - (j + 1) >= 0)
+	if ((j - (i[0] + 1) > 0) && (j - (i[1] + 1) > 0))
 	{
-		if (carre[i][j] == '.' && carre[i][j + 1] == '.'
-			&& carre[i + 1][j] == '.' && carre[i + 1][j + 1] == '.')
+		if (carre[i[0]][i[1]] == '.' && carre[i[0]][i[1] + 1] == '.'
+			&& carre[i[0] + 1][i[1]] == '.' && carre[i[0] + 1][i[1] + 1] == '.')
 		{
-			carre[i][j] = lst->alpha;
-			carre[i + 1][j] = lst->alpha;
-			carre[i][j + 1] = lst->alpha;
-			carre[i + 1][j + 1] = lst->alpha;
+			carre[i[0]][i[1]] = lst->alpha;
+			carre[i[0] + 1][i[1]] = lst->alpha;
+			carre[i[0]][i[1] + 1] = lst->alpha;
+			carre[i[0] + 1][i[1] + 1] = lst->alpha;
 			return (1);
 		}
 	}
@@ -73,14 +74,18 @@ void	init_place(char c, int i, char **ca)
 int		verif_full(char **ca, int i)
 {
 	int	j[2];
+	int	nb;
 
 	j[0] = -1;
+	nb = 0;
 	while (++j[0] < i)
 	{
 		j[1] = -1;
 		while (++j[1] < i)
 			if (ca[j[0]][j[1]] == '.')
-				return (1);
+				nb++;
 	}
-	return (0);
+	if (nb <= 3)
+		return (0);
+	return (1);
 }
