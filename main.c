@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 13:09:10 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/05 15:55:08 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/07 11:52:34 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,18 @@ int		main(int argc, char **argv)
 	fd = 0;
 	if (argc == 2)
 	{
+		if (!tetris_check(argv[1]))
+		{
+			ft_putendl("error");
+			return (0);
+		}
 		ptr = creat_lst(argv[1]);
 		if (ptr != NULL)
 		{
-			putlst(ptr);
 			ca = resolv(ptr);
 			i = -1;
-			ft_putendl("----------");
 			while (++i < (int)ft_strlen(ca[0]))
 				ft_putendl(ca[i]);
-			ft_putstr("----------");
 			del_lst(&ptr);
 		}
 		else

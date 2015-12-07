@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 13:09:52 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/07 10:08:49 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/07 11:51:43 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ int					l_search(char *buf);
 int					j_search(char *buf);
 int					z_search(char *buf);
 int					s_search(char *buf);
+int					tetris_check(char *str);
 
 #endif
