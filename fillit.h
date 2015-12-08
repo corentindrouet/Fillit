@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 13:09:52 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/07 11:51:43 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/08 08:26:06 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define Z()	&z_search
 # define S()	&s_search
 # define F() int	(*f[7])(char*) = {I(), O(), T(), L(), J(), Z(), S()};
+# define TABJ()	int	j[4] = {-1, -1, -1, 0}
+# define PTR()	char	*ptr = "iotljzs"
 
 typedef struct		s_tetri
 {
@@ -33,6 +35,10 @@ typedef struct		s_tetri
 	struct s_tetri	*next;
 }					t_tetri;
 
+int					tab_size(int ttris);
+int					run(char *arg);
+void				ft_puttab(char **ca);
+int					verifend(t_tetri *lst, char **ca, int i);
 int					verif_full(char **ca, int i);
 void				init_place(char c, int i, char **ca);
 int					resolv_recur(t_tetri *lst, char **ca,

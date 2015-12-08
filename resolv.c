@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 09:25:00 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/07 13:25:17 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/08 08:28:09 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ char	**resolv(t_tetri *lst)
 	int		(*f[7])(t_tetri*, char **, int*, int);
 
 	f_init(f);
-	i = 2;
+	i = tab_size((int)lstlen(lst));
 	continu = 0;
 	while (continu <= 0 && i <= 11)
 	{
 		if ((ca = ft_tabnew(i, i + 1)) == NULL)
 			return (NULL);
-		ft_inittab(ca, i, i + 1, '\0');
 		ft_inittab(ca, i, i, '.');
 		continu = resolv_recur(lst, ca, f, i);
 		if (continu <= 0)
@@ -56,15 +55,10 @@ char	**resolv(t_tetri *lst)
 int		resolv_recur(t_tetri *lst, char **ca,
 		int (*f[2])(t_tetri *lst, char **carre, int *i, int j), int i)
 {
-	int		j[4];
-	char	*ptr;
-
-	ptr = "iotljzs";
-	if (lst == NULL)
-		return (1);
-	if (!verif_full(ca, i))
-		return (-1);
-	j[0] = -1;
+	TABJ();
+	PTR();
+	if (verifend(lst, ca, i))
+		return (verifend(lst, ca, i));
 	while (++j[0] < i)
 	{
 		j[1] = -1;
@@ -86,4 +80,23 @@ int		resolv_recur(t_tetri *lst, char **ca,
 			}
 	}
 	return (0);
+}
+
+int		verifend(t_tetri *lst, char **ca, int i)
+{
+	if (lst == NULL)
+		return (1);
+	if (!verif_full(ca, i))
+		return (-1);
+	return (0);
+}
+
+int		tab_size(int ttris)
+{
+	int i;
+
+	i = 2;
+	while ((i * i) < (ttris * 4))
+		i++;
+	return (i);
 }
