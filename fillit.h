@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 13:09:52 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/08 08:26:06 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/08 09:36:16 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ int					verifend(t_tetri *lst, char **ca, int i);
 int					verif_full(char **ca, int i);
 void				init_place(char c, int i, char **ca);
 int					resolv_recur(t_tetri *lst, char **ca,
-						int (*f[2])(t_tetri *lst, char **carre, int *i, int j),
-							int i);
+						int (*f[2])(t_tetri *lst, char **carre, int *i, int j));
 int					j_place(t_tetri *lst, char **carre, int *i, int j);
 int					o_place(t_tetri *lst, char **carre, int *i, int j);
 int					i_place(t_tetri *lst, char **carre, int *i, int j);

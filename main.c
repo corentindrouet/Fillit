@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 13:09:10 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/08 08:24:30 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/08 09:20:14 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int		run(char *arg)
 {
 	t_tetri	*ptr;
 	char	**ca;
-
 
 	if (!tetris_check(arg))
 		return (0);

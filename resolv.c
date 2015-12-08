@@ -6,7 +6,7 @@
 /*   By: cdrouet <cdrouet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/05 09:25:00 by cdrouet           #+#    #+#             */
-/*   Updated: 2015/12/08 08:28:09 by cdrouet          ###   ########.fr       */
+/*   Updated: 2015/12/08 09:37:20 by cdrouet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	**resolv(t_tetri *lst)
 		if ((ca = ft_tabnew(i, i + 1)) == NULL)
 			return (NULL);
 		ft_inittab(ca, i, i, '.');
-		continu = resolv_recur(lst, ca, f, i);
+		continu = resolv_recur(lst, ca, f);
 		if (continu <= 0)
 		{
 			j = -1;
@@ -53,27 +53,30 @@ char	**resolv(t_tetri *lst)
 }
 
 int		resolv_recur(t_tetri *lst, char **ca,
-		int (*f[2])(t_tetri *lst, char **carre, int *i, int j), int i)
+		int (*f[7])(t_tetri *lst, char **carre, int *i, int j))
 {
+	int		len;
+
+	len = ft_strlen(ca[0]);
 	TABJ();
 	PTR();
-	if (verifend(lst, ca, i))
-		return (verifend(lst, ca, i));
-	while (++j[0] < i)
+	if (verifend(lst, ca, len))
+		return (verifend(lst, ca, len));
+	while (++j[0] < len)
 	{
 		j[1] = -1;
-		while (++j[1] < i)
+		while (++j[1] < len)
 			if (ca[j[0]][j[1]] == '.')
 			{
 				j[2] = -1;
 				while (++j[2] < 7)
 					if (lst->c == ptr[j[2]])
-						if (f[j[2]](lst, ca, j, i))
+						if (f[j[2]](lst, ca, j, len))
 						{
-							if ((j[3] = resolv_recur(lst->next, ca, f, i)) > 0)
+							if ((j[3] = resolv_recur(lst->next, ca, f)) > 0)
 								return (1);
 							else if (j[3] == 0)
-								init_place(lst->alpha, i, ca);
+								init_place(lst->alpha, len, ca);
 							else
 								return (-1);
 						}
